@@ -84,6 +84,66 @@ backend/
    npm run dev
    ```
 
+### Environment Configuration
+
+This starter kit supports multiple environment configurations:
+
+- `.env.development` - Development environment settings
+- `.env.production` - Production environment settings
+- `.env` - Default environment settings
+
+#### Setting Up Environment Files
+
+Example environment files are provided as templates:
+
+- `.env.development.example` - Template for development settings
+- `.env.production.example` - Template for production settings
+
+To set up your environment files:
+
+```bash
+# For development
+cp .env.development.example .env.development
+
+# For production
+cp .env.production.example .env.production
+```
+
+Then edit these files with your actual configuration values. The actual environment files (`.env.development`, `.env.production`) are excluded from version control for security reasons.
+
+#### Switching Between Environments
+
+You can switch between environments by setting the `NODE_ENV` variable before starting your application:
+
+```bash
+# For development (default)
+NODE_ENV=development npm run dev
+
+# For production
+NODE_ENV=production npm start
+```
+
+Alternatively, you can modify the scripts in your package.json:
+
+```json
+{
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon src/server.ts",
+    "start": "NODE_ENV=production ts-node src/server.ts"
+  }
+}
+```
+
+#### Environment File Loading Priority
+
+The application loads environment variables in the following order of priority:
+
+1. Environment-specific file (e.g., `.env.production` when `NODE_ENV=production`)
+2. Default `.env` file
+3. System environment variables
+
+This means variables in `.env.production` will override those in `.env` when running in production mode.
+
 The server will be running at `http://localhost:3345` (or the port specified in your `.env` file).
 
 ## API Documentation
