@@ -2,9 +2,9 @@
 import express, { Request, Response } from "express";
 import { errorHandler } from "./middleware/error-handler";
 import cors from "cors";
-import guestRoute from "./routes/v1/guest-route";
-import roomRoute from "./routes/v1/room-route";
-import reservationRoute from "./routes/v1/reservation-route";
+import userRoute from "./routes/v1/user-route";
+import itemRoute from "./routes/v1/item-route";
+import transactionRoute from "./routes/v1/transaction-route";
 
 // Create an Express application
 const app = express();
@@ -17,9 +17,9 @@ app.use(errorHandler);
 // app.use(morgan("dev"));
 
 // routes here
-app.use("/api/v1/guests", guestRoute);
-app.use("/api/v1/rooms", roomRoute);
-app.use("/api/v1/reservations", reservationRoute);
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/items", itemRoute);
+app.use("/api/v1/transactions", transactionRoute);
 
 // Define a route for the root path ('/')
 app.get("/", (req: Request, res: Response) => {
